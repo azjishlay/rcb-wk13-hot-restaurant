@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.text());
 app.use(bodyParser.json({type:'application/vnd.api+json'}));
-staticContentFolder = __dirname + '/public';
+staticContentFolder = __dirname + '/app/public';
 
 app.use(express.static(staticContentFolder));
 // set the static files location 
