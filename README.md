@@ -4,7 +4,7 @@
 
 This app schedules table reservation requests. Restaurant has 5 tables; first 5 requests get a reservation. Every request thereafter is queued to a waiting list.
 
-- Customer submits a reservation via `reservation.html`
+- Customer submits a reservation
 - If table is available, customer reservation for table is booked
 - If table is unavailable, customer reservation is added to waiting list
 
