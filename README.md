@@ -4,21 +4,33 @@
 
 This app schedules table reservation requests. Restaurant has 5 tables; first 5 requests get a reservation. Every request thereafter is queued to a waiting list.
 
-- Customer makes a reservation using `reservation.html`
-- If table is available, reservation for table is booked
-- If table is unavailable, reservation is added to waiting list
+- Customer submits a reservation via `reservation.html`
+- If table is available, customer reservation for table is booked
+- If table is unavailable, customer reservation is added to waiting list
 
 ### Directory Structure
 
-  - `server.js`
-  - `package.json`
+```
+  - server.js
+  - package.json
   - app/
     - data/
       - data files
-    - routes/
-      - `routes.js`
     - public/
       - html files
-      - js/
-        - `app.js`
+    - routes/
+      - routing files
+```
 
+### Run
+
+- Download required dependencies:
+
+    ```
+    npm install
+    ```
+- Run app:
+
+    ```
+    node server.js
+    ```
