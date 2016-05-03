@@ -8,51 +8,102 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
   <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  
+
 </head>
 <body>
   
-<div class="container"> 
+  <div class="container">
 
-  <div class="jumbotron text-center">
-    <h1>Hot Restaurant</h1>
-    <h3>Reservations</h3>
+    <div class="jumbotron text-center">
+      <h1>Hot Restaurant</h1>
+      <h3>Current Reservations & Wait List</h3>
+    </div>
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Current Reservations</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>Phone Number</th>
+          </tr>
+          </thead>
+          <tbody id="tableSection">
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Wait List</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>Phone Number</th>
+          </tr>
+          </thead>
+          <tbody id="waitlistSection">
+          </tbody>
+        </table>
+      </div>
+
+    </div>
   </div>
 
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h3 class="panel-title">Restaurant Tables</h3>
-    </div>
-    <div class="panel-body">
-    <table style="width:100%">
-        <tr>
-          <th>Table #</th>
-          <th>Customer ID</th> 
-          <th>Table Available?</th>
-        </tr>
-    </table>  
-    </div>
+  <script type="text/javascript">
 
-  </div>
+    function runTableQuery() {
 
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h3 class="panel-title">Table Waiting List</h3>
-    </div>
-    <div class="panel-body">
-    <table style="width:100%">
-        <tr>
-          <th>Customer #</th>
-          <th>Customer ID</th> 
-          <th>Timestamp</th>
-        </tr>
-        <tr>
-          
-        </tr>
-    </table>
-    </div>
+      var currentURL = window.location.origin;
 
-  </div>
-</div>
+      $.ajax({url: currentURL + '/api/tables',
+        method: 'GET'})
+
+              .done(function(tableData){
+
+                for (var i = 0; i < tableData.length; i++) {
+                  var tableSection = $('<tr>').html(
+                          '<td>' + tableData[i].custName + '</td>' +
+                          '<td>' + tableData[i].custPhone + '</td>'
+                  );
+
+                  $('#tableSection').append(tableSection);
+                };
+              });
+    }
+
+    function runWaitlistQuery() {
+
+      var currentURL = window.location.origin;
+
+      $.ajax({url: currentURL + '/api/waitlist',
+                method: 'GET'})
+
+              .done(function(waitlistData){
+
+                for (var i = 0; i < waitlistData.length; i++) {
+                  var waitlistSection = $('<tr>').html(
+                          '<td>' + waitlistData[i].custName + '</td>' +
+                          '<td>' + waitlistData[i].custPhone + '</td>'
+                  );
+
+                  $('#waitlistSection').append(waitlistSection);
+                };
+              });
+    }
+
+    // Run queries
+    runTableQuery();
+    runWaitlistQuery();
+
+  </script>
 </body>
 </html>
