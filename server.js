@@ -1,37 +1,25 @@
-// Dependencies
+// DEPENDENCIES
 var bodyParser = require('body-parser');
 var express = require('express');
-var routes = require("./app/routes/routes.js");
+var path = require('path');
 
-// Configure express
+// CONFIG EXPRESS
 var app = express();
 var PORT = process.env.PORT || 8081;  
 
-// Handle file types
+// HANDLE FILE TYPES
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.text());
 app.use(bodyParser.json({type:'application/vnd.api+json'}));
 
+// ROUTING
+require('./app/routes/routes_api.js')(app);
+require('./app/routes/routes_html.js')(app);
 
-// Set the static files location 
-// /public/img will be /img for users
-// var staticContentFolder;
-// staticContentFolder = __dirname + '/app/public';
-// app.use(express.static(staticContentFolder));
-
-
-// Use routes from external file
-// Pass in an instance of the server
-require('./app/routes/routes.js')(app);
-
-
-// Listener
+// LISTENER
 app.listen(PORT,function() {
-    // console.log(
-    //   'Serving static content from ' + 
-    //   staticContentFolder);
     console.log(
-      'App listenting on PORT: ' + 
+      'App listening on PORT: ' +
       PORT);
 });
