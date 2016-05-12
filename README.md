@@ -1,4 +1,4 @@
-# week-13-restaurant
+# rcb-wk13-hot-restaurant
 
 ### Hot Restaurant
 
@@ -21,16 +21,3 @@ This app schedules table reservation requests. Restaurant has 5 tables; first 5 
     - routes/
       - routing files
 ```
-
-### Run
-
-- Download required dependencies:
-
-    ```
-    npm install
-    ```
-- Run app:
-
-    ```
-    node server.js
-    ```
